@@ -45,12 +45,12 @@ export function Newsletter() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={t("placeholder")}
-            className="flex-1 h-12 rounded-xl px-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-white"
+            className="flex-1 h-14 min-h-14 rounded-xl px-4 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-white"
           />
           <button
             type="submit"
             disabled={loading}
-            className="h-12 px-6 rounded-xl bg-white text-primary font-semibold hover:bg-slate-100 transition flex items-center justify-center gap-2 disabled:opacity-60"
+            className="h-14 px-6 rounded-xl bg-white text-primary font-semibold hover:bg-slate-100 transition flex items-center justify-center gap-2 disabled:opacity-60"
           >
             {loading && <Loader2 className="h-4 w-4 animate-spin" />}
             {t("subscribe")}

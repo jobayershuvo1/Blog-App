@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { useTranslations } from "next-intl";
-import { Menu, X, PenLine, Search, LayoutDashboard, Shield, LogOut, ChevronDown } from "lucide-react";
+import { Menu, X, PenLine, Search, LayoutDashboard, Shield, LogOut, ChevronDown, Feather } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { hasAtLeast } from "@/lib/constants";
@@ -24,8 +24,8 @@ export function Navbar({ categories }: { categories: CategoryLite[] }) {
     <header className="sticky top-0 z-50 border-b border-slate-200/60 dark:border-slate-700/60 bg-white/80 dark:bg-surface-dark/80 backdrop-blur-xl">
       <nav className="container-prose flex h-16 items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2 shrink-0">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-primary text-white font-bold">
-            B
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-primary text-white">
+            <Feather className="h-5 w-5" strokeWidth={2.5} />
           </span>
           <span className="font-serif text-xl font-bold hidden sm:block">{SITE_NAME}</span>
         </Link>

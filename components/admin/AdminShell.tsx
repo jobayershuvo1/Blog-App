@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import {
   LayoutDashboard, FileText, UserCheck, Users, FolderTree,
-  MessageSquare, Settings, Menu, X, LogOut, Home, PenSquare,
+  MessageSquare, Settings, Menu, X, LogOut, Home, PenSquare, Feather,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { hasAtLeast } from "@/lib/constants";
@@ -68,7 +68,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   const SidebarContent = (
     <div className="flex h-full flex-col">
       <Link href="/admin" className="flex items-center gap-2 px-5 h-16 border-b border-slate-200 dark:border-slate-700/60">
-        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-primary text-white font-bold">B</span>
+        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-primary text-white"><Feather className="h-5 w-5" strokeWidth={2.5} /></span>
         <span className="font-serif text-lg font-bold">Admin</span>
       </Link>
       <nav className="flex-1 overflow-y-auto p-3 space-y-1">

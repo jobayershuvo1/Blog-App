@@ -115,10 +115,8 @@ export default async function PostPage({ params }: Props) {
 
       <div className="container-prose py-10 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10">
         <div className="min-w-0">
+          {/* Translate controls + article body (original or translated, in place) */}
           <PostTranslate postId={post._id} originalTitle={post.title} originalContent={post.content} />
-
-          {/* Content */}
-          <div className="prose-content max-w-none" dangerouslySetInnerHTML={{ __html: post.content }} />
 
           <DownloadLinks links={post.downloadLinks} postId={post._id} />
 

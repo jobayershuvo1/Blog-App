@@ -69,7 +69,19 @@ export function PostEditor({ initial, postId }: { initial?: InitialPost; postId?
     if (!slugTouched) setSlug(slugify(title));
   }, [title, slugTouched]);
 
-  const validDownloads = useMemo(() => downloadLinks.filter((l) => l.label && l.url), [downloadLinks]);
+  // Keep any link that has a URL; auto-add https:// when the protocol is missing
+  // (otherwise the server rejects it as invalid) and fall back to a sensible label.
+  const validDownloads = useMemo(
+    () =>
+      downloadLinks
+        .filter((l) => l.url.trim())
+        .map((l) => {
+          const rawUrl = l.url.trim();
+          const url = /^[a-z][a-z0-9+.-]*:\/\//i.test(rawUrl) ? rawUrl : `https://${rawUrl}`;
+          return { ...l, url, label: l.label.trim() || "Download" };
+        }),
+    [downloadLinks]
+  );
 
   async function save(intent: "draft" | "submit" | "publish") {
     if (!title.trim()) return toast.error("Please add a title.");

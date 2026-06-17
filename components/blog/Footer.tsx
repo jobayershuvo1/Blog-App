@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Twitter, Facebook, Instagram, Github, Linkedin } from "lucide-react";
+import { Twitter, Facebook, Instagram, Github, Linkedin, Feather } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { getCategories, getLatestPosts } from "@/lib/queries";
 import { getSettings } from "@/models/SiteSettings";
@@ -30,7 +30,7 @@ export async function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-primary text-white font-bold">B</span>
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-primary text-white"><Feather className="h-5 w-5" strokeWidth={2.5} /></span>
               <span className="font-serif text-xl font-bold">{settings.siteName || SITE_NAME}</span>
             </div>
             <p className="text-sm text-slate-500 dark:text-slate-400">{settings.tagline}</p>

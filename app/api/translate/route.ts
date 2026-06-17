@@ -45,6 +45,55 @@ async function translateLong(text: string, source: string, target: string): Prom
   return out.join(" ");
 }
 
+/** Split post HTML into ordered block-level segments so paragraph/heading/list
+ *  structure survives translation (MyMemory only handles plain text). */
+function htmlToBlocks(html: string): { tag: string; text: string }[] {
+  const re = /<(h[1-6]|p|li|blockquote)\b[^>]*>([\s\S]*?)<\/\1>/gi;
+  const blocks: { tag: string; text: string }[] = [];
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(html)) !== null) {
+    const text = stripHtml(m[2]).replace(/\s+/g, " ").trim();
+    if (text) blocks.push({ tag: m[1].toLowerCase(), text });
+  }
+  // Fallback for content without recognised block tags: split on blank lines.
+  if (!blocks.length) {
+    stripHtml(html)
+      .split(/\n+/)
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .forEach((text) => blocks.push({ tag: "p", text }));
+  }
+  return blocks;
+}
+
+/** Reassemble translated blocks into HTML, regrouping consecutive list items. */
+function blocksToHtml(blocks: { tag: string; text: string }[]): string {
+  let out = "";
+  let inList = false;
+  for (const b of blocks) {
+    if (b.tag === "li") {
+      if (!inList) { out += "<ul>"; inList = true; }
+      out += `<li>${b.text}</li>`;
+    } else {
+      if (inList) { out += "</ul>"; inList = false; }
+      out += `<${b.tag}>${b.text}</${b.tag}>`;
+    }
+  }
+  if (inList) out += "</ul>";
+  return out;
+}
+
+/** Translate each block's text (in order) preserving its tag. */
+async function translateHtml(html: string, source: string, target: string): Promise<string> {
+  const blocks = htmlToBlocks(html);
+  const translated: { tag: string; text: string }[] = [];
+  for (const b of blocks) {
+    // eslint-disable-next-line no-await-in-loop
+    translated.push({ tag: b.tag, text: await translateLong(b.text, source, target) });
+  }
+  return blocksToHtml(translated);
+}
+
 const schema = z.object({
   postId: z.string().optional(),
   text: z.string().optional(),
@@ -74,15 +123,10 @@ export async function POST(req: Request) {
       const post = await Post.findOne({ _id: postId, status: POST_STATUS.APPROVED }).lean<any>();
       if (!post) return error("Post not found.", 404);
 
-      const plain = stripHtml(post.content);
-      const [tTitle, tContent] = await Promise.all([
+      const [tTitle, html] = await Promise.all([
         translateChunk(post.title.slice(0, 480), source, target),
-        translateLong(plain, source, target),
+        translateHtml(post.content, source, target),
       ]);
-      const html = tContent
-        .split(/\n+/)
-        .map((p) => `<p>${p}</p>`)
-        .join("");
 
       await Translation.create({ post: postId, language: target, title: tTitle, content: html });
       return json({ title: tTitle, content: html, cached: false });
