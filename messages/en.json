@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "home": "Home",
+    "categories": "Categories",
+    "search": "Search",
+    "writeForUs": "Write for us",
+    "login": "Sign in",
+    "dashboard": "Dashboard",
+    "admin": "Admin",
+    "logout": "Sign out"
+  },
+  "common": {
+    "readMore": "Read more",
+    "loading": "Loading…",
+    "noResults": "No results found",
+    "by": "by",
+    "minRead": "min read",
+    "views": "views",
+    "share": "Share",
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied!",
+    "tags": "Tags",
+    "relatedPosts": "Related posts",
+    "morePosts": "More from this author",
+    "all": "All",
+    "page": "Page",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "home": {
+    "heroBadge": "Featured",
+    "latestPosts": "Latest Posts",
+    "trending": "Trending Now",
+    "browseByCategory": "Browse by Category",
+    "breaking": "Breaking"
+  },
+  "post": {
+    "downloads": "Downloads",
+    "readIn": "Read in",
+    "publishedOn": "Published on",
+    "translating": "Translating…",
+    "showOriginal": "Show original"
+  },
+  "search": {
+    "placeholder": "Search posts, topics, tags…",
+    "title": "Search",
+    "resultsFor": "Results for",
+    "tryAgain": "Try a different keyword or browse categories."
+  },
+  "newsletter": {
+    "title": "Subscribe to our newsletter",
+    "subtitle": "Get the latest posts delivered right to your inbox.",
+    "placeholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "success": "Thanks for subscribing!",
+    "error": "Something went wrong. Please try again."
+  },
+  "footer": {
+    "recentPosts": "Recent Posts",
+    "categories": "Categories",
+    "quickLinks": "Quick Links",
+    "rights": "All rights reserved."
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Sign in to your account",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "becomeAuthor": "Become an author",
+    "authorTitle": "Apply to write for us",
+    "name": "Full name",
+    "bio": "Short bio",
+    "writingSample": "Writing sample",
+    "submit": "Submit application"
+  }
+}

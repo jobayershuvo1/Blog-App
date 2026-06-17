@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "categories": "Categorías",
+    "search": "Buscar",
+    "writeForUs": "Escribe con nosotros",
+    "login": "Iniciar sesión",
+    "dashboard": "Panel",
+    "admin": "Administración",
+    "logout": "Cerrar sesión"
+  },
+  "common": {
+    "readMore": "Leer más",
+    "loading": "Cargando…",
+    "noResults": "No se encontraron resultados",
+    "by": "por",
+    "minRead": "min de lectura",
+    "views": "vistas",
+    "share": "Compartir",
+    "copyLink": "Copiar enlace",
+    "linkCopied": "¡Enlace copiado!",
+    "tags": "Etiquetas",
+    "relatedPosts": "Publicaciones relacionadas",
+    "morePosts": "Más de este autor",
+    "all": "Todo",
+    "page": "Página",
+    "previous": "Anterior",
+    "next": "Siguiente"
+  },
+  "home": {
+    "heroBadge": "Destacado",
+    "latestPosts": "Últimas publicaciones",
+    "trending": "Tendencias",
+    "browseByCategory": "Explorar por categoría",
+    "breaking": "Último momento"
+  },
+  "post": {
+    "downloads": "Descargas",
+    "readIn": "Leer en",
+    "publishedOn": "Publicado el",
+    "translating": "Traduciendo…",
+    "showOriginal": "Mostrar original"
+  },
+  "search": {
+    "placeholder": "Buscar publicaciones, temas, etiquetas…",
+    "title": "Buscar",
+    "resultsFor": "Resultados para",
+    "tryAgain": "Prueba otra palabra clave o explora las categorías."
+  },
+  "newsletter": {
+    "title": "Suscríbete a nuestro boletín",
+    "subtitle": "Recibe las últimas publicaciones en tu correo.",
+    "placeholder": "Introduce tu correo",
+    "subscribe": "Suscribirse",
+    "success": "¡Gracias por suscribirte!",
+    "error": "Algo salió mal. Inténtalo de nuevo."
+  },
+  "footer": {
+    "recentPosts": "Publicaciones recientes",
+    "categories": "Categorías",
+    "quickLinks": "Enlaces rápidos",
+    "rights": "Todos los derechos reservados."
+  },
+  "auth": {
+    "loginTitle": "Bienvenido de nuevo",
+    "loginSubtitle": "Inicia sesión en tu cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "signIn": "Iniciar sesión",
+    "becomeAuthor": "Conviértete en autor",
+    "authorTitle": "Solicita escribir con nosotros",
+    "name": "Nombre completo",
+    "bio": "Biografía breve",
+    "writingSample": "Muestra de escritura",
+    "submit": "Enviar solicitud"
+  }
+}

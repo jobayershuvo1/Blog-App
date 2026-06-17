@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "categories": "التصنيفات",
+    "search": "بحث",
+    "writeForUs": "اكتب معنا",
+    "login": "تسجيل الدخول",
+    "dashboard": "لوحة التحكم",
+    "admin": "الإدارة",
+    "logout": "تسجيل الخروج"
+  },
+  "common": {
+    "readMore": "اقرأ المزيد",
+    "loading": "جارٍ التحميل…",
+    "noResults": "لا توجد نتائج",
+    "by": "بواسطة",
+    "minRead": "دقيقة قراءة",
+    "views": "مشاهدات",
+    "share": "مشاركة",
+    "copyLink": "نسخ الرابط",
+    "linkCopied": "تم نسخ الرابط!",
+    "tags": "وسوم",
+    "relatedPosts": "مقالات ذات صلة",
+    "morePosts": "المزيد من هذا الكاتب",
+    "all": "الكل",
+    "page": "صفحة",
+    "previous": "السابق",
+    "next": "التالي"
+  },
+  "home": {
+    "heroBadge": "مميز",
+    "latestPosts": "أحدث المقالات",
+    "trending": "الأكثر رواجًا",
+    "browseByCategory": "تصفح حسب التصنيف",
+    "breaking": "عاجل"
+  },
+  "post": {
+    "downloads": "تنزيلات",
+    "readIn": "اقرأ بـ",
+    "publishedOn": "نُشر في",
+    "translating": "جارٍ الترجمة…",
+    "showOriginal": "عرض الأصل"
+  },
+  "search": {
+    "placeholder": "ابحث عن مقالات، مواضيع، وسوم…",
+    "title": "بحث",
+    "resultsFor": "نتائج",
+    "tryAgain": "جرّب كلمة مختلفة أو تصفح التصنيفات."
+  },
+  "newsletter": {
+    "title": "اشترك في نشرتنا البريدية",
+    "subtitle": "احصل على أحدث المقالات في بريدك مباشرة.",
+    "placeholder": "أدخل بريدك الإلكتروني",
+    "subscribe": "اشترك",
+    "success": "شكرًا لاشتراكك!",
+    "error": "حدث خطأ ما. حاول مرة أخرى."
+  },
+  "footer": {
+    "recentPosts": "أحدث المقالات",
+    "categories": "التصنيفات",
+    "quickLinks": "روابط سريعة",
+    "rights": "جميع الحقوق محفوظة."
+  },
+  "auth": {
+    "loginTitle": "مرحبًا بعودتك",
+    "loginSubtitle": "سجّل الدخول إلى حسابك",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "signIn": "تسجيل الدخول",
+    "becomeAuthor": "كن كاتبًا",
+    "authorTitle": "تقدّم للكتابة معنا",
+    "name": "الاسم الكامل",
+    "bio": "نبذة قصيرة",
+    "writingSample": "عينة كتابة",
+    "submit": "إرسال الطلب"
+  }
+}

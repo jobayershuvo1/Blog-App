@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "PowerShell(node -v; npm -v; \\(Get-Command node\\).Source)",
+      "PowerShell(node -v)",
+      "PowerShell(npm -v)"
+    ]
+  }
+}

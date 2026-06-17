@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "home": "होम",
+    "categories": "श्रेणियाँ",
+    "search": "खोज",
+    "writeForUs": "हमारे लिए लिखें",
+    "login": "साइन इन",
+    "dashboard": "डैशबोर्ड",
+    "admin": "एडमिन",
+    "logout": "साइन आउट"
+  },
+  "common": {
+    "readMore": "और पढ़ें",
+    "loading": "लोड हो रहा है…",
+    "noResults": "कोई परिणाम नहीं मिला",
+    "by": "द्वारा",
+    "minRead": "मिनट पढ़ें",
+    "views": "व्यूज़",
+    "share": "साझा करें",
+    "copyLink": "लिंक कॉपी करें",
+    "linkCopied": "लिंक कॉपी हो गया!",
+    "tags": "टैग",
+    "relatedPosts": "संबंधित पोस्ट",
+    "morePosts": "इस लेखक की और पोस्ट",
+    "all": "सभी",
+    "page": "पृष्ठ",
+    "previous": "पिछला",
+    "next": "अगला"
+  },
+  "home": {
+    "heroBadge": "विशेष",
+    "latestPosts": "नवीनतम पोस्ट",
+    "trending": "अभी ट्रेंडिंग",
+    "browseByCategory": "श्रेणी के अनुसार ब्राउज़ करें",
+    "breaking": "ब्रेकिंग"
+  },
+  "post": {
+    "downloads": "डाउनलोड",
+    "readIn": "इसमें पढ़ें",
+    "publishedOn": "प्रकाशित",
+    "translating": "अनुवाद हो रहा है…",
+    "showOriginal": "मूल दिखाएँ"
+  },
+  "search": {
+    "placeholder": "पोस्ट, विषय, टैग खोजें…",
+    "title": "खोज",
+    "resultsFor": "परिणाम",
+    "tryAgain": "दूसरा कीवर्ड आज़माएँ या श्रेणियाँ ब्राउज़ करें।"
+  },
+  "newsletter": {
+    "title": "हमारे न्यूज़लेटर की सदस्यता लें",
+    "subtitle": "नवीनतम पोस्ट सीधे अपने इनबॉक्स में पाएँ।",
+    "placeholder": "अपना ईमेल दर्ज करें",
+    "subscribe": "सब्सक्राइब करें",
+    "success": "सदस्यता लेने के लिए धन्यवाद!",
+    "error": "कुछ गलत हो गया। कृपया पुनः प्रयास करें।"
+  },
+  "footer": {
+    "recentPosts": "हाल की पोस्ट",
+    "categories": "श्रेणियाँ",
+    "quickLinks": "त्वरित लिंक",
+    "rights": "सर्वाधिकार सुरक्षित।"
+  },
+  "auth": {
+    "loginTitle": "वापसी पर स्वागत है",
+    "loginSubtitle": "अपने खाते में साइन इन करें",
+    "email": "ईमेल",
+    "password": "पासवर्ड",
+    "signIn": "साइन इन",
+    "becomeAuthor": "लेखक बनें",
+    "authorTitle": "हमारे लिए लिखने हेतु आवेदन करें",
+    "name": "पूरा नाम",
+    "bio": "संक्षिप्त परिचय",
+    "writingSample": "लेखन नमूना",
+    "submit": "आवेदन जमा करें"
+  }
+}
