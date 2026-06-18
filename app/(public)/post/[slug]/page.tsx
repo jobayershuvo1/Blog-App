@@ -73,42 +73,44 @@ export default async function PostPage({ params }: Props) {
       <ViewTracker postId={post._id} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* Cover with title overlay */}
-      <header className="relative h-[380px] sm:h-[480px]">
-        {post.coverImage ? (
-          <Image src={post.coverImage} alt={post.title} fill priority sizes="100vw" className="object-cover" />
-        ) : (
-          <div className="h-full w-full bg-gradient-primary" />
+      {/* Full cover image (never cropped on any device) + title below */}
+      <header>
+        {post.coverImage && (
+          <div className="flex justify-center bg-slate-100 dark:bg-surface-dark-elevated">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={post.coverImage}
+              alt={post.title}
+              className="max-h-[80vh] w-auto max-w-full object-contain"
+            />
+          </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/50 to-slate-950/20" />
-        <div className="absolute inset-0 flex items-end">
-          <div className="container-prose pb-10 w-full">
-            {/* Breadcrumb */}
-            <nav className="mb-3 text-sm text-slate-300 flex items-center gap-2">
-              <Link href="/" className="hover:text-white">Home</Link>
-              {post.category && (
-                <>
-                  <span>/</span>
-                  <Link href={`/category/${post.category.slug}`} className="hover:text-white">{post.category.name}</Link>
-                </>
-              )}
-            </nav>
+        <div className="container-prose pt-8">
+          {/* Breadcrumb */}
+          <nav className="mb-3 text-sm text-slate-500 dark:text-slate-400 flex items-center gap-2">
+            <Link href="/" className="hover:text-primary">Home</Link>
             {post.category && (
-              <span className="inline-flex rounded-full px-3 py-1 text-xs font-semibold text-white" style={{ backgroundColor: post.category.color }}>
-                {post.category.icon} {post.category.name}
-              </span>
+              <>
+                <span>/</span>
+                <Link href={`/category/${post.category.slug}`} className="hover:text-primary">{post.category.name}</Link>
+              </>
             )}
-            <h1 className="mt-3 font-serif text-3xl sm:text-5xl font-bold text-white leading-tight max-w-4xl">
-              {post.title}
-            </h1>
-            <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-slate-200">
-              {post.author && <span className="font-medium">{post.author.name}</span>}
-              {post.publishedAt && (
-                <span className="flex items-center gap-1"><Calendar className="h-4 w-4" />{formatDate(post.publishedAt)}</span>
-              )}
-              <span className="flex items-center gap-1"><Clock className="h-4 w-4" />{post.readingTime} min read</span>
-              <span className="flex items-center gap-1"><Eye className="h-4 w-4" />{formatNumber(post.views)} views</span>
-            </div>
+          </nav>
+          {post.category && (
+            <span className="inline-flex rounded-full px-3 py-1 text-xs font-semibold text-white" style={{ backgroundColor: post.category.color }}>
+              {post.category.icon} {post.category.name}
+            </span>
+          )}
+          <h1 className="mt-3 font-serif text-3xl sm:text-5xl font-bold leading-tight max-w-4xl">
+            {post.title}
+          </h1>
+          <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+            {post.author && <span className="font-medium">{post.author.name}</span>}
+            {post.publishedAt && (
+              <span className="flex items-center gap-1"><Calendar className="h-4 w-4" />{formatDate(post.publishedAt)}</span>
+            )}
+            <span className="flex items-center gap-1"><Clock className="h-4 w-4" />{post.readingTime} min read</span>
+            <span className="flex items-center gap-1"><Eye className="h-4 w-4" />{formatNumber(post.views)} views</span>
           </div>
         </div>
       </header>
