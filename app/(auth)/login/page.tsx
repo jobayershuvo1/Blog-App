@@ -6,9 +6,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import toast from "react-hot-toast";
-import { Mail, Lock, Loader2 } from "lucide-react";
+import { Mail, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input, Label } from "@/components/ui/primitives";
+import { PasswordInput } from "@/components/ui/PasswordInput";
 
 function LoginForm() {
   const t = useTranslations("auth");
@@ -47,11 +48,13 @@ function LoginForm() {
           </div>
         </div>
         <div>
-          <Label htmlFor="password">{t("password")}</Label>
-          <div className="relative">
-            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-            <Input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} className="pl-10" placeholder="••••••••" />
+          <div className="flex items-center justify-between">
+            <Label htmlFor="password">{t("password")}</Label>
+            <Link href="/forgot-password" className="text-xs font-medium text-primary hover:underline">
+              Forgot password?
+            </Link>
           </div>
+          <PasswordInput id="password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" />
         </div>
         <Button type="submit" loading={loading} className="w-full" size="lg">
           {t("signIn")}

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
-import { LayoutDashboard, FileText, PlusCircle, MessageSquare, Menu, Home, Shield, LogOut, Feather } from "lucide-react";
+import { LayoutDashboard, FileText, PlusCircle, MessageSquare, Menu, Home, Shield, LogOut, Feather, UserCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { hasAtLeast } from "@/lib/constants";
 import { ThemeToggle } from "@/components/blog/ThemeToggle";
@@ -14,6 +14,7 @@ const NAV = [
   { href: "/dashboard/posts", label: "My Posts", icon: FileText },
   { href: "/dashboard/posts/new", label: "New Post", icon: PlusCircle },
   { href: "/dashboard/messages", label: "Messages", icon: MessageSquare },
+  { href: "/dashboard/profile", label: "Profile", icon: UserCircle },
 ];
 
 export function DashboardShell({ children }: { children: React.ReactNode }) {

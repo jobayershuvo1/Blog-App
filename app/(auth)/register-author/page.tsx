@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Label } from "@/components/ui/primitives";
+import { PasswordInput } from "@/components/ui/PasswordInput";
 
 export default function RegisterAuthorPage() {
   const t = useTranslations("auth");
@@ -87,7 +88,7 @@ export default function RegisterAuthorPage() {
         </div>
         <div>
           <Label htmlFor="password">{t("password")}</Label>
-          <Input id="password" type="password" required minLength={8} value={form.password} onChange={(e) => set("password", e.target.value)} placeholder="At least 8 characters" />
+          <PasswordInput id="password" required minLength={8} value={form.password} onChange={(e) => set("password", e.target.value)} placeholder="At least 8 characters" withIcon={false} />
         </div>
         <div>
           <Label htmlFor="bio">{t("bio")}</Label>

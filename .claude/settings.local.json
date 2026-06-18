@@ -4,7 +4,8 @@
       "Bash(npm -v)",
       "PowerShell(node -v; npm -v; \\(Get-Command node\\).Source)",
       "PowerShell(node -v)",
-      "PowerShell(npm -v)"
+      "PowerShell(npm -v)",
+      "mcp__Claude_Preview__preview_start"
     ]
   }
 }

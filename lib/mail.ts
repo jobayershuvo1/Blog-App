@@ -140,6 +140,18 @@ export const emails = {
       ),
     }),
 
+  passwordReset: (email: string, name: string, resetUrl: string) =>
+    sendMail({
+      to: email,
+      subject: `Reset your ${SITE_NAME} password`,
+      html: layout(
+        `Reset your password`,
+        `<p>Hi ${name}, we received a request to reset your password.</p>
+         <p>Click the button below to choose a new one. This link expires in 1 hour. If you didn't request this, you can safely ignore this email.</p>`,
+        { label: "Reset Password", url: resetUrl }
+      ),
+    }),
+
   newsletterWelcome: (email: string) =>
     sendMail({
       to: email,

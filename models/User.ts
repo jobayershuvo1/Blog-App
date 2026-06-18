@@ -21,6 +21,8 @@ export interface IUser extends Document {
   bio?: string;
   socialLinks?: SocialLinks;
   status: string;
+  resetToken?: string;
+  resetTokenExpiry?: Date;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -54,6 +56,8 @@ const userSchema = new Schema<IUser>(
     bio: { type: String, maxlength: 1000 },
     socialLinks: { type: socialSchema, default: {} },
     status: { type: String, enum: Object.values(USER_STATUS), default: USER_STATUS.ACTIVE, index: true },
+    resetToken: { type: String, select: false, index: true },
+    resetTokenExpiry: { type: Date, select: false },
   },
   { timestamps: true }
 );
