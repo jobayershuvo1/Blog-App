@@ -241,16 +241,26 @@ export async function getAuthorByUsername(username: string) {
   };
 }
 
-export async function searchPosts(q: string, page = 1): Promise<{ posts: PostCardData[]; total: number }> {
+export async function searchPosts(
+  q: string,
+  page = 1,
+  categoryId?: string
+): Promise<{ posts: PostCardData[]; total: number }> {
   await connectDB();
-  if (!q.trim()) return { posts: [], total: 0 };
-  const filter = publishedFilter({
-    $or: [
+  const hasQuery = q.trim().length > 0;
+  // Need at least a query or a category to return anything.
+  if (!hasQuery && !categoryId) return { posts: [], total: 0 };
+
+  const extra: Record<string, unknown> = {};
+  if (hasQuery) {
+    extra.$or = [
       { title: { $regex: q, $options: "i" } },
       { tags: { $regex: q, $options: "i" } },
       { excerpt: { $regex: q, $options: "i" } },
-    ],
-  });
+    ];
+  }
+  if (categoryId) extra.category = categoryId;
+  const filter = publishedFilter(extra);
   const [posts, total] = await Promise.all([
     Post.find(filter)
       .sort({ publishedAt: -1 })
