@@ -98,6 +98,15 @@ export function getClientIp(headers: Headers): string {
   return headers.get("x-real-ip") || "0.0.0.0";
 }
 
+/** Force every <a> in stored post HTML to open in a new tab (safely). */
+export function openLinksInNewTab(html: string): string {
+  if (!html) return html;
+  return html.replace(
+    /<a\b(?![^>]*\btarget=)/gi,
+    '<a target="_blank" rel="noopener noreferrer"'
+  );
+}
+
 export function absoluteUrl(path = ""): string {
   const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
   return `${base.replace(/\/$/, "")}${path.startsWith("/") ? "" : "/"}${path}`;

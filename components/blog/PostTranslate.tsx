@@ -5,6 +5,7 @@ import { Languages, Loader2, RotateCcw } from "lucide-react";
 import { useTranslations } from "next-intl";
 import toast from "react-hot-toast";
 import { TRANSLATE_LANGUAGES } from "@/lib/constants";
+import { openLinksInNewTab } from "@/lib/utils";
 
 export function PostTranslate({
   postId,
@@ -76,10 +77,10 @@ export function PostTranslate({
       {translated ? (
         <>
           <h2 className="mb-4 font-serif text-2xl sm:text-3xl font-bold leading-tight">{translated.title}</h2>
-          <div className="prose-content max-w-none" dangerouslySetInnerHTML={{ __html: translated.content }} />
+          <div className="prose-content max-w-none" dangerouslySetInnerHTML={{ __html: openLinksInNewTab(translated.content) }} />
         </>
       ) : (
-        <div className="prose-content max-w-none" dangerouslySetInnerHTML={{ __html: originalContent }} />
+        <div className="prose-content max-w-none" dangerouslySetInnerHTML={{ __html: openLinksInNewTab(originalContent) }} />
       )}
     </>
   );

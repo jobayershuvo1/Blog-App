@@ -210,7 +210,7 @@ export function RichTextEditor({
       Highlight.configure({ multicolor: true }),
       FontFamily,
       TextAlign.configure({ types: ["heading", "paragraph"] }),
-      Link.configure({ openOnClick: false, autolink: true, HTMLAttributes: { rel: "noopener noreferrer" } }),
+      Link.configure({ openOnClick: false, autolink: true, HTMLAttributes: { rel: "noopener noreferrer", target: "_blank" } }),
       ImageExt.configure({ inline: false, HTMLAttributes: { class: "rounded-xl" } }),
       Table.configure({ resizable: true }),
       TableRow,
