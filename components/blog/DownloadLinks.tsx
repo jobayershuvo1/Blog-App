@@ -28,13 +28,16 @@ export function DownloadLinks({ links, postId }: { links: DownloadLink[]; postId
       <div className="flex flex-wrap gap-4">
         {links.map((link, i) => {
           const file = isFile(link);
+          // Files open in a new tab and download; any other link redirects in
+          // the same tab (more reliable than _blank against popup blockers).
+          const extra = file
+            ? { download: "", target: "_blank", rel: "noopener noreferrer" }
+            : {};
           return (
             <a
               key={i}
               href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              {...(file ? { download: "" } : {})}
+              {...extra}
               onClick={() => track(i)}
               className="btn-gradient inline-flex h-12 items-center justify-center gap-2 rounded-xl px-7 font-semibold text-white"
             >
