@@ -76,12 +76,12 @@ export default async function PostPage({ params }: Props) {
       {/* Full cover image (never cropped on any device) + title below */}
       <header>
         {post.coverImage && (
-          <div className="flex justify-center bg-slate-100 dark:bg-surface-dark-elevated">
+          <div className="container-prose pt-6">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={post.coverImage}
               alt={post.title}
-              className="max-h-[80vh] w-auto max-w-full object-contain"
+              className="mx-auto w-full h-auto max-h-[80vh] object-contain rounded-2xl"
             />
           </div>
         )}
