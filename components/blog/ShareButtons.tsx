@@ -15,10 +15,10 @@ export function ShareButtons({ url, title, postId }: { url: string; title: strin
   }
 
   const links = [
-    { name: "Facebook", icon: Facebook, href: `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}`, color: "hover:bg-[#1877f2]" },
-    { name: "Twitter", icon: Twitter, href: `https://twitter.com/intent/tweet?url=${enc(url)}&text=${enc(title)}`, color: "hover:bg-[#1da1f2]" },
-    { name: "WhatsApp", icon: MessageCircle, href: `https://wa.me/?text=${enc(title + " " + url)}`, color: "hover:bg-[#25d366]" },
-    { name: "LinkedIn", icon: Linkedin, href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}`, color: "hover:bg-[#0a66c2]" },
+    { name: "Facebook", icon: Facebook, href: `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}`, color: "hover:text-[#1877f2]" },
+    { name: "Twitter", icon: Twitter, href: `https://twitter.com/intent/tweet?url=${enc(url)}&text=${enc(title)}`, color: "hover:text-[#1da1f2]" },
+    { name: "WhatsApp", icon: MessageCircle, href: `https://wa.me/?text=${enc(title + " " + url)}`, color: "hover:text-[#25d366]" },
+    { name: "LinkedIn", icon: Linkedin, href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}`, color: "hover:text-[#0a66c2]" },
   ];
 
   async function copy() {
@@ -42,7 +42,7 @@ export function ShareButtons({ url, title, postId }: { url: string; title: strin
           rel="noopener noreferrer"
           onClick={track}
           aria-label={`Share on ${name}`}
-          className={`group h-10 w-10 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition-all duration-300 ease-out hover:text-white hover:-translate-y-1 hover:scale-110 hover:shadow-lg active:scale-95 ${color}`}
+          className={`group h-10 w-10 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-110 hover:shadow-lg active:scale-95 ${color}`}
         >
           <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
         </a>
@@ -50,7 +50,7 @@ export function ShareButtons({ url, title, postId }: { url: string; title: strin
       <button
         onClick={copy}
         aria-label={t("copyLink")}
-        className="group h-10 w-10 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition-all duration-300 ease-out hover:bg-primary hover:text-white hover:-translate-y-1 hover:scale-110 hover:shadow-lg hover:shadow-primary/30 active:scale-95"
+        className="group h-10 w-10 rounded-xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition-all duration-300 ease-out hover:text-primary hover:-translate-y-1 hover:scale-110 hover:shadow-lg hover:shadow-primary/30 active:scale-95"
       >
         {copied ? <Check className="h-4 w-4" /> : <Link2 className="h-4 w-4" />}
       </button>
