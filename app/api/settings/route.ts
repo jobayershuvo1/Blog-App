@@ -21,7 +21,7 @@ export async function PUT(req: Request) {
   // Whitelist updatable fields.
   const allowed = [
     "siteName", "tagline", "logo", "favicon", "social", "gaId",
-    "ads", "homepageLayout", "footerText", "colors",
+    "ads", "adsense", "homepageLayout", "footerText", "colors",
   ];
   const update: Record<string, unknown> = {};
   for (const key of allowed) if (key in body) update[key] = body[key];

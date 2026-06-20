@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Twitter, Facebook, Instagram, Github, Linkedin, Feather } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-import { getCategories, getLatestPosts } from "@/lib/queries";
+import { getCategories, getLatestPosts, getFooterPages } from "@/lib/queries";
 import { getSettings } from "@/models/SiteSettings";
 import { connectDB } from "@/lib/db";
 
@@ -10,10 +10,11 @@ const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || "BlogForge";
 export async function Footer() {
   const t = await getTranslations("footer");
   await connectDB();
-  const [categories, recent, settings] = await Promise.all([
+  const [categories, recent, settings, pages] = await Promise.all([
     getCategories(),
     getLatestPosts(4),
     getSettings(),
+    getFooterPages(),
   ]);
 
   const socials = [
@@ -78,7 +79,16 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-slate-200 dark:border-slate-700/60 pt-6 text-center text-sm text-slate-400">
+        {/* Compliance / legal links (AdSense approval) */}
+        {pages.length > 0 && (
+          <div className="mt-10 border-t border-slate-200 dark:border-slate-700/60 pt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm">
+            <Link href="/" className="text-slate-500 hover:text-primary">Home</Link>
+            {pages.map((p) => (
+              <Link key={p.slug} href={`/${p.slug}`} className="text-slate-500 hover:text-primary">{p.title}</Link>
+            ))}
+          </div>
+        )}
+        <div className="mt-6 border-t border-slate-200 dark:border-slate-700/60 pt-6 text-center text-sm text-slate-400">
           <p>{settings.footerText}</p>
           <p className="mt-1">© {new Date().getFullYear()} {settings.siteName || SITE_NAME}. {t("rights")}</p>
         </div>

@@ -20,6 +20,19 @@ export interface ISiteSettings extends Document {
     sidebar?: string;
     inArticle?: string;
   };
+  adsense: {
+    enabled: boolean;
+    publisherId?: string; // ca-pub-XXXXXXXXXXXXXXXX
+    autoAds: boolean;
+    paragraphsPerAd: number;
+    slots: {
+      header?: string;
+      sidebar?: string;
+      footer?: string;
+      inArticle?: string;
+      stickyMobile?: string;
+    };
+  };
   homepageLayout: "grid" | "list" | "magazine";
   footerText: string;
   colors: {
@@ -50,6 +63,19 @@ const siteSettingsSchema = new Schema<ISiteSettings>(
       header: String,
       sidebar: String,
       inArticle: String,
+    },
+    adsense: {
+      enabled: { type: Boolean, default: false },
+      publisherId: String,
+      autoAds: { type: Boolean, default: false },
+      paragraphsPerAd: { type: Number, default: 3 },
+      slots: {
+        header: String,
+        sidebar: String,
+        footer: String,
+        inArticle: String,
+        stickyMobile: String,
+      },
     },
     homepageLayout: { type: String, enum: ["grid", "list", "magazine"], default: "magazine" },
     footerText: { type: String, default: "Built with ❤️ using Next.js & MongoDB." },

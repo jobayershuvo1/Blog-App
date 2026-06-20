@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import {
   LayoutDashboard, FileText, UserCheck, Users, FolderTree,
-  MessageSquare, Settings, Menu, X, LogOut, Home, PenSquare, Feather,
+  MessageSquare, Settings, Menu, X, LogOut, Home, PenSquare, Feather, ScrollText,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { hasAtLeast } from "@/lib/constants";
@@ -26,6 +26,7 @@ const NAV: NavItem[] = [
   { href: "/admin/posts", label: "Posts", icon: FileText, badgeKey: "pendingPosts" },
   { href: "/admin/users", label: "Users", icon: Users },
   { href: "/admin/categories", label: "Categories", icon: FolderTree },
+  { href: "/admin/pages", label: "Pages", icon: ScrollText },
   { href: "/admin/messages", label: "Messages", icon: MessageSquare, badgeKey: "unread" },
   { href: "/admin/settings", label: "Settings", icon: Settings, superAdminOnly: true },
 ];

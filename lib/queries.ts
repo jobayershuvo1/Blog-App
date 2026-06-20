@@ -3,6 +3,7 @@ import { connectDB } from "@/lib/db";
 import Post from "@/models/Post";
 import Category from "@/models/Category";
 import User from "@/models/User";
+import Page from "@/models/Page";
 import { POST_STATUS, POSTS_PER_PAGE } from "@/lib/constants";
 import { readingTime } from "@/lib/utils";
 import type { PostCardData, CategoryLite } from "@/lib/types";
@@ -239,6 +240,26 @@ export async function getAuthorByUsername(username: string) {
     },
     posts: posts.map((p: any) => toCard({ ...p, author })),
   };
+}
+
+export async function getPageBySlug(slug: string) {
+  await connectDB();
+  const page = await Page.findOne({ slug, published: true }).lean<any>();
+  if (!page) return null;
+  return {
+    _id: String(page._id),
+    slug: page.slug,
+    title: page.title,
+    content: page.content || "",
+    metaDescription: page.metaDescription || "",
+    updatedAt: page.updatedAt ? new Date(page.updatedAt).toISOString() : null,
+  };
+}
+
+export async function getFooterPages(): Promise<{ slug: string; title: string }[]> {
+  await connectDB();
+  const pages = await Page.find({ published: true }).sort({ order: 1, title: 1 }).select("slug title").lean();
+  return pages.map((p: any) => ({ slug: p.slug, title: p.title }));
 }
 
 export async function searchPosts(

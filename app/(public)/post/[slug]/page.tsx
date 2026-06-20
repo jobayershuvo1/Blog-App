@@ -10,6 +10,8 @@ import { ViewTracker } from "@/components/blog/ViewTracker";
 import { DownloadLinks } from "@/components/blog/DownloadLinks";
 import { PostTranslate } from "@/components/blog/PostTranslate";
 import { Badge } from "@/components/ui/primitives";
+import { AdSlot, AdsbygooglePusher, StickyMobileAd } from "@/components/ads/AdSlot";
+import { getAdsense, injectInArticleAds } from "@/lib/adsense";
 import { formatDate, formatNumber, absoluteUrl } from "@/lib/utils";
 
 interface Props {
@@ -51,6 +53,8 @@ export default async function PostPage({ params }: Props) {
 
   const related = await getRelatedPosts(post.category?._id ?? null, post._id, 3);
   const url = absoluteUrl(`/post/${post.slug}`);
+  const ads = await getAdsense();
+  const contentWithAds = injectInArticleAds(post.content, ads);
 
   // Article structured data (JSON-LD)
   const jsonLd = {
@@ -117,8 +121,9 @@ export default async function PostPage({ params }: Props) {
 
       <div className="container-prose py-10 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10">
         <div className="min-w-0">
-          {/* Translate controls + article body (original or translated, in place) */}
-          <PostTranslate postId={post._id} originalTitle={post.title} originalContent={post.content} />
+          {/* Translate controls + article body (with in-article ads, original or translated) */}
+          <PostTranslate postId={post._id} originalTitle={post.title} originalContent={contentWithAds} />
+          <AdsbygooglePusher />
 
           <DownloadLinks links={post.downloadLinks} postId={post._id} />
 
@@ -139,8 +144,13 @@ export default async function PostPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Sidebar: author card */}
+        {/* Sidebar: author card + ad */}
         <aside className="space-y-6">
+          {ads.slots.sidebar && (
+            <div className="rounded-2xl border border-slate-200 dark:border-slate-700 p-2 min-h-[250px]">
+              <AdSlot publisherId={ads.publisherId} slot={ads.slots.sidebar} />
+            </div>
+          )}
           {post.author && (
             <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-surface-dark-card p-6 text-center">
               {post.author.avatar ? (
@@ -179,6 +189,8 @@ export default async function PostPage({ params }: Props) {
           </div>
         </section>
       )}
+
+      <StickyMobileAd publisherId={ads.publisherId} slot={ads.slots.stickyMobile} />
     </article>
   );
 }

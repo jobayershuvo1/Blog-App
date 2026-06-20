@@ -5,6 +5,8 @@ import { getLocale, getMessages } from "next-intl/server";
 import Script from "next/script";
 import { RTL_LOCALES, type Locale } from "@/lib/constants";
 import { Providers } from "./providers";
+import { AdSenseScript } from "@/components/ads/AdSenseScript";
+import { getAdsense } from "@/lib/adsense";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -35,6 +37,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const messages = await getMessages();
   const dir = RTL_LOCALES.includes(locale) ? "rtl" : "ltr";
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const adsense = await getAdsense();
 
   return (
     <html lang={locale} dir={dir} suppressHydrationWarning>
@@ -44,6 +47,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>{children}</Providers>
         </NextIntlClientProvider>
+
+        <AdSenseScript publisherId={adsense.publisherId} enabled={adsense.enabled} />
 
         {gaId ? (
           <>
