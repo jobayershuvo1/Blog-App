@@ -1,10 +1,20 @@
 import { z } from "zod";
 import { connectDB } from "@/lib/db";
-import { json, error } from "@/lib/api";
+import { json, error, requireRole } from "@/lib/api";
 import { rateLimit } from "@/lib/rateLimit";
 import { getClientIp } from "@/lib/utils";
 import { sendMail, isMailConfigured } from "@/lib/mail";
+import { ROLES } from "@/lib/constants";
 import ContactMessage from "@/models/ContactMessage";
+
+export async function GET() {
+  const { res } = await requireRole(ROLES.MODERATOR);
+  if (res) return res;
+  await connectDB();
+  const messages = await ContactMessage.find().sort({ createdAt: -1 }).limit(200).lean();
+  const unread = await ContactMessage.countDocuments({ isRead: false });
+  return json({ messages, unread });
+}
 
 const schema = z.object({
   name: z.string().min(2).max(100),

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import {
   LayoutDashboard, FileText, UserCheck, Users, FolderTree,
-  MessageSquare, Settings, Menu, X, LogOut, Home, PenSquare, Feather, ScrollText,
+  MessageSquare, Settings, Menu, X, LogOut, Home, PenSquare, Feather, ScrollText, Mail,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { hasAtLeast } from "@/lib/constants";
@@ -16,7 +16,7 @@ interface NavItem {
   href: string;
   label: string;
   icon: typeof LayoutDashboard;
-  badgeKey?: "pendingPosts" | "pendingRequests" | "unread";
+  badgeKey?: "pendingPosts" | "pendingRequests" | "unread" | "contactUnread";
   superAdminOnly?: boolean;
 }
 
@@ -28,6 +28,7 @@ const NAV: NavItem[] = [
   { href: "/admin/categories", label: "Categories", icon: FolderTree },
   { href: "/admin/pages", label: "Pages", icon: ScrollText },
   { href: "/admin/messages", label: "Messages", icon: MessageSquare, badgeKey: "unread" },
+  { href: "/admin/contact", label: "Contact", icon: Mail, badgeKey: "contactUnread" },
   { href: "/admin/settings", label: "Settings", icon: Settings, superAdminOnly: true },
 ];
 
@@ -35,24 +36,27 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { data: session } = useSession();
   const [open, setOpen] = useState(false);
-  const [counts, setCounts] = useState({ pendingPosts: 0, pendingRequests: 0, unread: 0 });
+  const [counts, setCounts] = useState({ pendingPosts: 0, pendingRequests: 0, unread: 0, contactUnread: 0 });
   const role = session?.user?.role;
 
   useEffect(() => {
     let active = true;
     async function load() {
       try {
-        const [statsRes, msgRes] = await Promise.all([
+        const [statsRes, msgRes, contactRes] = await Promise.all([
           fetch("/api/admin/stats"),
           fetch("/api/messages"),
+          fetch("/api/contact"),
         ]);
         const stats = statsRes.ok ? await statsRes.json() : null;
         const msg = msgRes.ok ? await msgRes.json() : null;
+        const contact = contactRes.ok ? await contactRes.json() : null;
         if (!active) return;
         setCounts({
           pendingPosts: stats?.stats?.pendingPosts ?? 0,
           pendingRequests: stats?.stats?.pendingRequests ?? 0,
           unread: msg?.unread ?? 0,
+          contactUnread: contact?.unread ?? 0,
         });
       } catch {}
     }
